@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книга</title>
+</head>
+<body>
+    <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getCreationYear()}">VALUE</p>
+    <hr>
+    <form th:Action="@{/books/{id}/edit(id=${book.getBookId()})}">
+        <input type="submit" value="Редактировать">
+    </form>
+    <br/>
+    <br/>
+    <form th:Method="DELETE" th:Action="@{/books/{id}(id=${book.getBookId()})}">
+        <input type="submit" value="Удалить">
+    </form>
+</body>
+</html>

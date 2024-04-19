@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование книги</title>
+</head>
+<body>
+
+<form th:Method="PATCH" th:Action="@{/books/{id}(id=${book.getBookId()})}" th:Object="${book}">
+    <label for="name">Введите название: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br/>
+    <label for="creationYear">Введите год рождения: </label>
+    <input type="text" th:field="*{creationYear}" id="creationYear">
+    <br/>
+    <input type="submit" value="Сохранить"/>
+</form>
+
+</body>
+</html>
