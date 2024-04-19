@@ -7,6 +7,7 @@ import ru.kulbaka.libraryCatalogue.models.Book;
 import ru.kulbaka.libraryCatalogue.models.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -36,7 +37,19 @@ public class BookDAO {
         jdbcTemplate.update("DELETE FROM Book WHERE bookId=?", id);
     }
 
-//    public List<Book> orderedBooks(int id) {
-//        return jdbcTemplate.query("SELECT * FROM Book WHERE personId=?", new BeanPropertyRowMapper<>(Book.class), id);
-//    }
+    public List<Book> orderedBooks(int id) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE personId=?", new BeanPropertyRowMapper<>(Book.class), id);
+    }
+
+    public Optional<Person> isOrderedByPerson(int bookId) {
+        return jdbcTemplate.query("SELECT Person.personId, fullname, birthYear FROM Person JOIN Book ON Person.personId = Book.personID WHERE bookId=?", new Object[] {bookId}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+    }
+
+    public void assignABook(int bookId, int personId) {
+        jdbcTemplate.update("UPDATE Book SET PersonId=? WHERE bookId=?", personId, bookId);
+    }
+
+    public void release(int bookId) {
+        jdbcTemplate.update("UPDATE Book SET personId=null WHERE bookId=?", bookId);
+    }
 }
