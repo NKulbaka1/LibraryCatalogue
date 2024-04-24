@@ -8,14 +8,12 @@
     <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getCreationYear()}">VALUE</p>
     <div th:if="${person}">
         <p th:text="${'Книга сейчас у: ' + person.getFullName() + ', ' + person.getBirthYear()}">person</p>
-        <br/>
         <form th:Method="PATCH" th:Action="@{/books/{id}/release(id=${book.getBookId()})}">
             <input type="submit" value="Освободить">
         </form>
     </div>
     <div th:if="${people}">
         <p>Книга свободна</p>
-        <br/>
         <form th:Method="PATCH" th:Action="@{/books/{id}/assign(id=${book.getBookId()})}">
             <label for="personToAssign">Выберите человека: </label>
             <select th:object="${personToAssign}" th:field="*{personId}" id="personToAssign">
@@ -25,6 +23,7 @@
             <input type="submit" value="Назначить книгу"/>
         </form>
     </div>
+    <hr/>
     <form th:Action="@{/books/{id}/edit(id=${book.getBookId()})}">
         <input type="submit" value="Редактировать">
     </form>

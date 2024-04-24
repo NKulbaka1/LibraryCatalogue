@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.kulbaka.libraryCatalogue.models.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -24,6 +25,10 @@ public class PersonDAO {
 
     public Person show(int id) {
         return jdbcTemplate.queryForObject("SELECT * FROM person WHERE personId = ?", new BeanPropertyRowMapper<>(Person.class), id);
+    }
+
+    public Optional<Person> show(String fullName) {
+        return jdbcTemplate.query("SELECT * FROM Person WHERE fullName=?", new Object[]{fullName}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 
     public void save(Person person) {
