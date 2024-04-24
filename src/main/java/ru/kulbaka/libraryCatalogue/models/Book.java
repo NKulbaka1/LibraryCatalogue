@@ -1,13 +1,20 @@
 package ru.kulbaka.libraryCatalogue.models;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class Book {
 
     private int id;
 
+    @NotEmpty(message = "Название не должно быть пустым")
     private String name;
 
+    @Pattern(regexp = "[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+", message = "Имя должно быть в формате: Фамилия Имя Отчество")
     private String author;
 
+    @NotNull(message = "Год создания не должен быть пустым")
     private int creationYear;
 
     public Book() {
@@ -19,11 +26,11 @@ public class Book {
         this.creationYear = creationYear;
     }
 
-    public int getBookId() {
+    public int getId() {
         return id;
     }
 
-    public void setBookId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

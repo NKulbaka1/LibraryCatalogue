@@ -18,11 +18,11 @@
         </div>
         <hr>
     </div>
-    <form th:Action="@{/people/{id}/edit(id=${person.getPersonId()})}">
+    <form th:Action="@{/people/{id}/edit(id=${person.getId()})}">
         <input type="submit" value="Редактировать">
     </form>
     <br/>
-    <form th:Method="DELETE" th:Action="@{/people/{id}(id=${person.getPersonId()})}">
+    <form th:Method="DELETE" th:Action="@{/people/{id}(id=${person.getId()})}">
         <input type="submit" value="Удалить">
     </form>
 </body>
