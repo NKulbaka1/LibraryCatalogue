@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 
 public class Person {
 
-    private int personId; //добавить валидацию и паттерн ФИО
+    private int id; //добавить валидацию и паттерн ФИО
 
     @Pattern(regexp = "[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+", message = "Имя должно быть в формате: Фамилия Имя Отчество")
     private String fullName;
@@ -16,18 +16,18 @@ public class Person {
     public Person() {
     }
 
-    public Person(int personId, String fullName, int birthYear) {
-        this.personId = personId;
+    public Person(int id, String fullName, int birthYear) {
+        this.id = id;
         this.fullName = fullName;
         this.birthYear = birthYear;
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getId() {
+        return id;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFullName() {

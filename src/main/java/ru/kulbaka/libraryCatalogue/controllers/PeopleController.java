@@ -27,13 +27,13 @@ public class PeopleController {
     }
 
     @GetMapping()
-    public String index(Model model) {
+    public String indexPeople(Model model) {
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String showPerson(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
         model.addAttribute("books", bookDAO.orderedBooks(id));
         return "people/show";
@@ -45,7 +45,7 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+    public String createPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -57,15 +57,13 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") int id, Model model) {
+    public String editPerson(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
         return "people/edit";
     }
 
     @PatchMapping({"/{id}"})
-    public String update(@ModelAttribute("person") @Valid Person updatedPerson, BindingResult bindingResult, @PathVariable("id") int id) {
-        personValidator.validate(updatedPerson, bindingResult);
-
+    public String updatePerson(@ModelAttribute("person") @Valid Person updatedPerson, BindingResult bindingResult, @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "people/edit";
         }
@@ -75,7 +73,7 @@ public class PeopleController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String deletePerson(@PathVariable("id") int id) {
         personDAO.delete(id);
         return "redirect:/people";
     }

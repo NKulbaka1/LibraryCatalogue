@@ -26,11 +26,11 @@ public class Book {
         this.creationYear = creationYear;
     }
 
-    public int getBookId() {
+    public int getId() {
         return id;
     }
 
-    public void setBookId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

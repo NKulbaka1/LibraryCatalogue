@@ -5,7 +5,7 @@
     <title>Редактирование данных человека</title>
 </head>
 <body>
-<form th:Method="PATCH" th:Action="@{/people/{id}(id=${person.getPersonId()})}" th:Object="${person}">
+<form th:Method="PATCH" th:Action="@{/people/{id}(id=${person.getId()})}" th:Object="${person}">
     <label for="fullName">Введите ФИО: </label>
     <input type="text" th:field="*{fullName}" id="fullName">
     <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full Name error</div>
